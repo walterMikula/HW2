@@ -1,6 +1,6 @@
 
 /*
- * *** PLACE YOUR NAME / SECTION HERE ***
+ * *** Walter Mikula / 002 SP25 ***
  *
  * Homework # 2 (Programming Assignment). This Java class defines a few basic
  * manipulation operations of a binary trees.
@@ -222,8 +222,15 @@ public class BinaryTree {
 
     private void replaceValueHelper(Node node, int oldVal, int newVal) {
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        if(node == null){
+            return;
+        }
+        else{
+            if(node.data==oldVal){
+                node.data = newVal;
+            }
+            replaceValueHelper(node.left, oldVal, newVal);
+            replaceValueHelper(node.right, oldVal, newVal);
 
     }
 
@@ -243,11 +250,15 @@ public class BinaryTree {
      */
 
     private int findMinHelper(Node node) {
-
+       if (node == null) {
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
 
         return Integer.MAX_VALUE;
+    }
+        int leftMin = findMInHelper(node.left);
+        int rightMin = findminHelper(node.right);
+        return Math.min(node.data, Math.min(leftMin, rightMin));
     }
 
 
@@ -265,14 +276,13 @@ public class BinaryTree {
      */
 
     private int nodesGTHelper(Node node, int val) {
-
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
-
-        // RETURNING -1 IN THIS STUB, WHICH WILL FAIL ALL TESTS. REPLACE IT WITH YOUR CODE
-
-
-        return -1;
+        int count=prevCount;
+        if(node== null){
+            return count;
+        }
+        int origCount = 0;
+        int newCount = findFTHelperRecursive(node, origCount, val);
+        return newCount;
     }
 
 
@@ -303,6 +313,8 @@ public class BinaryTree {
     }
 
     private int[] averageHelper(Node n) {
+        int [] Number = {0,0};
+        int [] secondNumb = averageHelperRecursive(n, Number);
 
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
@@ -311,6 +323,6 @@ public class BinaryTree {
         // COUNT LOCATIONS IN THE RETURNED ARRAY AS SHOWN BELOW, ELSE
         // THE 'SUM' IS RETURNED IN INDEX LOCATION 0, AND COUNT IS LOCATION 1
 
-        return new int[]{0, 0};
+        return secondNumb;
     }
 }
